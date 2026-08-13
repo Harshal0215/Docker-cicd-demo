@@ -1,0 +1,21 @@
+services:
+  app:
+    image: harshalmsrm/docker-cicd-demo:5fb46486b5c6c103fd7e199f95e9c1a10df7b782
+    container_name: java-app
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  database:
+    image: postgres:16
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: demo
+      POSTGRES_USER: demo
+      POSTGRES_PASSWORD: demo123
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
